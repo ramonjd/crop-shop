@@ -13,10 +13,12 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "dist/style.css"
   ],
   "scripts": {
     "dev": "vite",
@@ -45,6 +47,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },

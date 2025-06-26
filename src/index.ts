@@ -1,3 +1,5 @@
+import './index.scss';
+
 // Main component export
 export { ImageCropper, default as ImageCropper } from './components/ImageCropper';
 

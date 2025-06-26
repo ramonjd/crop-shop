@@ -18,6 +18,13 @@ export default defineConfig({
       }
     }
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "src/styles/variables.scss" as *;`
+      }
+    }
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -31,9 +38,14 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM'
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'style.css'
+          return assetInfo.name
         }
       }
     },
+    cssCodeSplit: false,
     sourcemap: true,
     target: 'esnext'
   }
