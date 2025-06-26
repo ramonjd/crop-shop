@@ -76,3 +76,78 @@ export interface CropResult {
     height: number;
   };
 }
+
+/**
+ * Position coordinates
+ */
+export interface Position {
+  x: number;
+  y: number;
+}
+
+/**
+ * Cropper state containing all properties for image manipulation
+ */
+export interface CropperState {
+  /** Current position of the image */
+  position: Position;
+  /** Current scale/zoom level */
+  scale: number;
+  /** Current rotation angle in degrees */
+  rotation: number;
+  /** Current crop boundaries */
+  cropBoundaries: CropArea;
+}
+
+/**
+ * State with history for undo/redo functionality
+ */
+export interface StateWithHistory {
+  /** Current active state */
+  current: CropperState;
+  /** History stack for undo operations */
+  history: CropperState[];
+  /** Future stack for redo operations */
+  future: CropperState[];
+}
+
+/**
+ * Action types for the cropper reducer
+ */
+export enum CropperActionType {
+  UPDATE_POSITION = 'UPDATE_POSITION',
+  UPDATE_SCALE = 'UPDATE_SCALE',
+  UPDATE_ROTATION = 'UPDATE_ROTATION',
+  UPDATE_CROP_BOUNDARIES = 'UPDATE_CROP_BOUNDARIES',
+  UPDATE_STATE = 'UPDATE_STATE',
+  UNDO = 'UNDO',
+  REDO = 'REDO',
+  RESET_HISTORY = 'RESET_HISTORY'
+}
+
+/**
+ * Actions for the cropper reducer
+ */
+export type CropperAction =
+  | { type: CropperActionType.UPDATE_POSITION; payload: Position }
+  | { type: CropperActionType.UPDATE_SCALE; payload: number }
+  | { type: CropperActionType.UPDATE_ROTATION; payload: number }
+  | { type: CropperActionType.UPDATE_CROP_BOUNDARIES; payload: CropArea }
+  | { type: CropperActionType.UPDATE_STATE; payload: Partial<CropperState> }
+  | { type: CropperActionType.UNDO }
+  | { type: CropperActionType.REDO }
+  | { type: CropperActionType.RESET_HISTORY };
+
+/**
+ * Return type for the cropper state hook
+ */
+export interface CropperStateHook {
+  /** Current cropper state */
+  state: CropperState;
+  /** Dispatch function for actions */
+  dispatch: React.Dispatch<CropperAction>;
+  /** Whether undo is available */
+  canUndo: boolean;
+  /** Whether redo is available */
+  canRedo: boolean;
+}

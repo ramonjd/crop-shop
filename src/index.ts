@@ -10,6 +10,12 @@ export type {
   CropEventHandlers,
   ImageCropperProps,
   CropResult,
+  Position,
+  CropperState,
+  StateWithHistory,
+  CropperActionType,
+  CropperAction,
+  CropperStateHook,
 } from './types';
 
 // Utility exports
@@ -18,4 +24,9 @@ export {
   applyCropConstraints,
   getRelativePosition,
   isPointInArea,
+  cropperReducer,
+  createInitialCropperState,
+  createInitialStateWithHistory,
+  useCropperState,
+  cropperActions,
 } from './utils';
